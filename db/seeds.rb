@@ -11,6 +11,7 @@
 # ************** ******** ************** #
 
 User.destroy_all
+Project.destroy_all
 
 jacob =
   User.create!(
@@ -23,3 +24,27 @@ jacob =
     password: 'jacob',
     password_confirmation: 'jacob'
   )
+  
+  dev = User.create!(
+    first_name: 'Johnny',
+    last_name: 'Jackson',
+    username: 'jjackson',
+    email: 'jj@email.com',
+    phone_number: '444-333-2222',
+    role: 'Developer',
+    password: 'john',
+    password_confirmation: 'john'
+  )
+
+project_one =
+  Project.create!(
+    title: 'Build User Authentication',
+    description:
+      'To build user registration, login functionality along with authentication and validations',
+    date_start: Date.today,
+    date_end: '2021-04-15'.to_date,
+    est_duration: '5 days',
+    time_spent: '',
+    status: false
+  )
+

@@ -10,45 +10,52 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_04_08_213128) do
-
+ActiveRecord::Schema.define(version: 2021_04_09_151334) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension 'plpgsql'
 
-  create_table "projects", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.date "date_start"
-    t.date "date_end"
-    t.string "est_duration"
-    t.string "time_spent"
-    t.boolean "status"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'projects', force: :cascade do |t|
+    t.string 'title'
+    t.text 'description'
+    t.date 'date_start'
+    t.date 'date_end'
+    t.string 'est_duration'
+    t.string 'time_spent'
+    t.boolean 'status'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
   end
 
-  create_table "tasks", force: :cascade do |t|
-    t.string "title"
-    t.text "description"
-    t.boolean "status"
-    t.bigint "project_id"
-    t.bigint "user_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_tasks_on_project_id"
-    t.index ["user_id"], name: "index_tasks_on_user_id"
+  create_table 'projects_managers', force: :cascade do |t|
+    t.bigint 'user_id'
+    t.bigint 'project_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['project_id'], name: 'index_projects_managers_on_project_id'
+    t.index ['user_id'], name: 'index_projects_managers_on_user_id'
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "first_name"
-    t.string "last_name"
-    t.string "phone_number"
-    t.string "email"
-    t.string "role"
-    t.string "username"
-    t.string "password_digest"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+  create_table 'tasks', force: :cascade do |t|
+    t.string 'title'
+    t.text 'description'
+    t.boolean 'status'
+    t.bigint 'project_id'
+    t.bigint 'user_id'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+    t.index ['project_id'], name: 'index_tasks_on_project_id'
+    t.index ['user_id'], name: 'index_tasks_on_user_id'
   end
 
+  create_table 'users', force: :cascade do |t|
+    t.string 'first_name'
+    t.string 'last_name'
+    t.string 'phone_number'
+    t.string 'email'
+    t.string 'role'
+    t.string 'username'
+    t.string 'password_digest'
+    t.datetime 'created_at', precision: 6, null: false
+    t.datetime 'updated_at', precision: 6, null: false
+  end
 end
