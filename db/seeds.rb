@@ -24,8 +24,9 @@ jacob =
     password: 'jacob',
     password_confirmation: 'jacob'
   )
-  
-  dev = User.create!(
+
+dev =
+  User.create!(
     first_name: 'Johnny',
     last_name: 'Jackson',
     username: 'jjackson',
@@ -34,6 +35,15 @@ jacob =
     role: 'Developer',
     password: 'john',
     password_confirmation: 'john'
+  )
+
+task_for_project_one =
+  Task.create(
+    title: 'Create validators for registration',
+    description:
+      'Use rails built-in validation features to enforce required standards upon user registration',
+    status: false,
+    user_id: dev.id
   )
 
 project_one =
@@ -47,4 +57,3 @@ project_one =
     time_spent: '',
     status: false
   )
-

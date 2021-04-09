@@ -1,7 +1,9 @@
 class Project < ApplicationRecord
+    include ActiveModel::Validations
+
+    has_many :tasks, dependent: :destroy
+    has_one :user, through: :tasks
 
     validates_presence_of :title, :description
-
-    has_many :tasks
-    has_one :user, through: :tasks
+    validates :tasks, project_has_one_task: true
 end
