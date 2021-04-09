@@ -7,7 +7,7 @@ class CreateProjects < ActiveRecord::Migration[6.1]
       t.date :date_end
       t.string :est_duration
       t.string :time_spent
-      t.boolean :status
+      t.boolean :completed, default: false
 
       t.timestamps
     end

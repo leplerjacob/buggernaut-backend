@@ -38,16 +38,16 @@ dev =
   )
 
 task_for_project_one =
-  Task.create(
+  Task.new(
     title: 'Create validators for registration',
     description:
       'Use rails built-in validation features to enforce required standards upon user registration',
-    status: false,
+    completed: false,
     user_id: dev.id
   )
 
 project_one =
-  Project.create!(
+  Project.new(
     title: 'Build User Authentication',
     description:
       'To build user registration, login functionality along with authentication and validations',
@@ -55,5 +55,11 @@ project_one =
     date_end: '2021-04-15'.to_date,
     est_duration: '5 days',
     time_spent: '',
-    status: false
+    completed: false
   )
+
+project_one.tasks << task_for_project_one
+project_one.save
+task_for_project_one.save
+
+ps_ms = ProjectsManagers.create(user_id: jacob.id, project_id: project_one.id)

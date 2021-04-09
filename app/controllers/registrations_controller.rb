@@ -6,7 +6,7 @@ class RegistrationsController < ApplicationController
         last_name: params['user']['last_name'],
         username: params['user']['username'],
         phone_number: params['user']['phone_number'],
-        email: params["user"]["email"],
+        email: params['user']['email'],
         role: params['user']['role'],
         password: params['user']['password'],
         password_confirmation: params['user']['password_confirmation']
