@@ -16,15 +16,19 @@ ActiveRecord::Schema.define(version: 2021_04_09_225217) do
   enable_extension "plpgsql"
 
   create_table "comments", force: :cascade do |t|
-    t.bigint "user_id_id"
-    t.bigint "project_id_id"
-    t.bigint "task_id_id"
+    t.bigint "parent_id"
+    t.bigint "comments_id"
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.bigint "task_id"
     t.text "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id_id"], name: "index_comments_on_project_id_id"
-    t.index ["task_id_id"], name: "index_comments_on_task_id_id"
-    t.index ["user_id_id"], name: "index_comments_on_user_id_id"
+    t.index ["comments_id"], name: "index_comments_on_comments_id"
+    t.index ["parent_id"], name: "index_comments_on_parent_id"
+    t.index ["project_id"], name: "index_comments_on_project_id"
+    t.index ["task_id"], name: "index_comments_on_task_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "projects", force: :cascade do |t|
