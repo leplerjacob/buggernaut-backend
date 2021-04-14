@@ -14,4 +14,10 @@ Rails
     resources :registrations, only: [:create]
 
     #************** REGISTRATION **************#
+    
+    #************** PROJECT **************#
+    resources :projects, only: [:create]
+    #************** PROJECT **************#
+
+
   end
