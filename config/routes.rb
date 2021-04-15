@@ -2,6 +2,7 @@ Rails
   .application
   .routes
   .draw do
+    # using resources: index, new, create, show, edit, update, destroy
     
     #************** SESSION **************#
     resources :sessions, only: [:create]
@@ -16,8 +17,10 @@ Rails
     #************** REGISTRATION **************#
     
     #************** PROJECT **************#
-    resources :projects, only: [:create]
+    resources :projects, only: [:create, :index, :show]
     #************** PROJECT **************#
-
-
+    
+    #************** TASK **************#
+    resources :tasks, only: [:create, :index, :show, :update]
+    #************** TASK **************#
   end

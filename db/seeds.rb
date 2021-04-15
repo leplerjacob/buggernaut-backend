@@ -12,6 +12,10 @@
 
 User.destroy_all
 Project.destroy_all
+Task.destroy_all
+ProjectManager.destroy_all
+Comment.destroy_all
+Ticket.destroy_all
 
 jacob =
   User.create!(
@@ -62,4 +66,4 @@ project_one.tasks << task_for_project_one
 project_one.save
 task_for_project_one.save
 
-ps_ms = ProjectsManagers.create(user_id: jacob.id, project_id: project_one.id)
+ps_ms = ProjectManager.create(user_id: jacob.id, project_id: project_one.id)
