@@ -4,7 +4,6 @@ class CreateTickets < ActiveRecord::Migration[6.1]
       t.string :title
       t.text :description
       t.boolean :resolved, default: false
-      t.boolean :claimed, default: false
       t.references :claimed_by, references: :users
       t.references :created_by, references: :users
       t.references :project

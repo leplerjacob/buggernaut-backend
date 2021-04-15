@@ -7,6 +7,7 @@ class CreateTasks < ActiveRecord::Migration[6.1]
 
       t.references :project
       t.references :user
+      t.references :assigned_to, references: :users
       t.timestamps
     end
   end

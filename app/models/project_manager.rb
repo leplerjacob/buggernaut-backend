@@ -1,4 +1,4 @@
-class ProjectsManagers < ApplicationRecord
+class ProjectManager < ApplicationRecord
   include ActiveModel::Validations
 
   belongs_to :user

@@ -31,6 +31,15 @@ ActiveRecord::Schema.define(version: 2021_04_09_225217) do
     t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
+  create_table "project_managers", force: :cascade do |t|
+    t.bigint "user_id"
+    t.bigint "project_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["project_id"], name: "index_project_managers_on_project_id"
+    t.index ["user_id"], name: "index_project_managers_on_user_id"
+  end
+
   create_table "projects", force: :cascade do |t|
     t.string "title"
     t.text "description"
@@ -43,23 +52,16 @@ ActiveRecord::Schema.define(version: 2021_04_09_225217) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "projects_managers", force: :cascade do |t|
-    t.bigint "user_id"
-    t.bigint "project_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["project_id"], name: "index_projects_managers_on_project_id"
-    t.index ["user_id"], name: "index_projects_managers_on_user_id"
-  end
-
   create_table "tasks", force: :cascade do |t|
     t.string "title"
     t.text "description"
     t.boolean "completed", default: false
     t.bigint "project_id"
     t.bigint "user_id"
+    t.bigint "assigned_to_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["assigned_to_id"], name: "index_tasks_on_assigned_to_id"
     t.index ["project_id"], name: "index_tasks_on_project_id"
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
@@ -68,7 +70,6 @@ ActiveRecord::Schema.define(version: 2021_04_09_225217) do
     t.string "title"
     t.text "description"
     t.boolean "resolved", default: false
-    t.boolean "claimed", default: false
     t.bigint "claimed_by_id"
     t.bigint "created_by_id"
     t.bigint "project_id"
