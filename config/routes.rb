@@ -22,5 +22,6 @@ Rails
     
     #************** TASK **************#
     resources :tasks, only: [:create, :index, :show, :update]
+    put '/tasks/update_status/:id', to: 'tasks#dev_update_status'
     #************** TASK **************#
   end
