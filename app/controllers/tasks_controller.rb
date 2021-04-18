@@ -1,6 +1,15 @@
 class TasksController < ApplicationController
   # Create validator for requiring task belongs to an open project
 
+  def tasks_for_project
+    byebug
+    project = Project.where(u)
+    tasks = Task.where(user_id: :id)
+    if tasks
+      render json: tasks
+    end
+  end
+
   def create
     project = Project.find(params['project']['id'])
 
