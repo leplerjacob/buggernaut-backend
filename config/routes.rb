@@ -31,7 +31,10 @@ Rails
     put '/tickets/claim/:id', to: 'tickets#claim_ticket'
     put '/tickets/update_status/:id', to: 'tickets#update_status'
     #************** TICKET **************#
-
+    
+    #************** USER **************#
+    get '/users_by_project/:id', to: 'users#users_by_project'
+    #************** USER **************#
     
 
   end
