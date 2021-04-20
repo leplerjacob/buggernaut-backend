@@ -18,12 +18,14 @@ Rails
     
     #************** PROJECT **************#
     resources :projects, only: [:create, :index, :show]
+    get '/users_projects', to: 'projects#users_projects'
+    get '/current_tasks_and_tickets', to: 'projects#current_tasks_and_tickets'
     #************** PROJECT **************#
     
     #************** TASK **************#
     resources :tasks, only: [:create, :index, :show, :update]
     put '/tasks/update_status/:id', to: 'tasks#dev_update_status'
-    get 'tasks_by_project/:id', to: 'tasks#tasks_for_project'
+    get '/tasks_by_project/:id', to: 'tasks#tasks_for_project'
     #************** TASK **************#
     
     #************** TICKET **************#

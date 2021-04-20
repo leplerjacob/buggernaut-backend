@@ -1,13 +1,17 @@
 class TasksController < ApplicationController
+  include CurrentUserConcern
+
   # Create validator for requiring task belongs to an open project
 
   def tasks_for_project
-    project_manager = ProjectManager.find_by(user_id: params[:id])
-    project = Project.where(project_manager: project_manager.id).where(completed: false).first
-    tasks = project.tasks
-    if tasks
-      render json: { tasks: tasks, status: 200}
+    # Get latest project user is involved in
+    project = @current_user.projects.order(:date_start).first
+    if !project
+      task = Task.where(assigned_to: @current_user.id).last
+      project = task.project
     end
+    tasks = project.tasks
+    render json: { tasks: tasks, status: 200 } if tasks
   end
 
   def create
@@ -40,11 +44,7 @@ class TasksController < ApplicationController
 
   def dev_update_status
     task = Task.find(params[:id])
-    byebug
-    if task
-        task.update(completed: params["task"]["completed"])
-    end
-    byebug
-  end
 
+    task.update(completed: params['task']['completed']) if task
+  end
 end

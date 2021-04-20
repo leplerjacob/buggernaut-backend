@@ -53,6 +53,33 @@ dev2 =
     password_confirmation: 'peters'
   )
 
+dev3 =
+  User.create!(
+    first_name: 'Bob',
+    last_name: 'Burnquist',
+    username: 'bob',
+    email: 'bburn@email.com',
+    phone_number: '111-916-9999',
+    role: 'Developer',
+    password: 'bob',
+    password_confirmation: 'bob'
+  )
+
+dev4 =
+  User.create!(
+    first_name: 'Sam',
+    last_name: 'Club',
+    username: 'sclub@email.com',
+    email: 'sc@email.com',
+    phone_number: '888-999-4343',
+    role: 'Developer',
+    password: 'sam',
+    password_confirmation: 'sam'
+  )
+
+# ************************ #
+# ***** PROJECT ONE ****** #
+# ************************ #
 task_for_project_one =
   Task.new(
     title: 'Create validators for registration',
@@ -64,36 +91,88 @@ task_for_project_one =
   )
 
 task_two_for_project_one =
-Task.new(
-  title: 'Implement association between User and Home',
-  description:
-  'Using rails built-in association functions, build a has_one relation between User and Home model',
-  completed: false,
-  user_id: jacob.id,
-  assigned_to_id: dev.id
-)
+  Task.new(
+    title: 'Implement association between User and Home',
+    description:
+      'Using rails built-in association functions, build a has_one relation between User and Home model',
+    completed: false,
+    user_id: jacob.id,
+    assigned_to_id: dev.id
+  )
 
 project_one =
-Project.new(
-  title: 'Build User Authentication',
-  description:
-  'To build user registration, login functionality along with authentication and validations',
-  date_start: Date.today,
-  date_end: '2021-04-15'.to_date,
-  est_duration: '5 days',
-  time_spent: '',
-  completed: false
-)
+  Project.new(
+    title: 'Build User Authentication',
+    description:
+      'To build user registration, login functionality along with authentication and validations',
+    date_start: Date.today,
+    date_end: '2021-04-15'.to_date,
+    est_duration: '5 days',
+    time_spent: '',
+    completed: false
+  )
 
 project_one.tasks << task_for_project_one
 project_one.tasks << task_two_for_project_one
 project_one.save
-task_for_project_one.save
 
-ps_ms = ProjectManager.create(user_id: jacob.id, project_id: project_one.id)
+pm_2 = ProjectManager.create(user_id: jacob.id, project_id: project_one.id)
+# ************************ #
+# ***** PROJECT ONE ****** #
+# ************************ #
+
+# ************************ #
+# ***** PROJECT TWO ****** #
+# ************************ #
+task_for_project_two =
+  Task.new(
+    title: 'Develop component tree',
+    description: 'Map out the component tree for client backend system',
+    completed: false,
+    user_id: jacob.id,
+    assigned_to_id: dev3.id
+  )
+
+task_two_for_project_two =
+  Task.new(
+    title: 'Implement association between User and Home',
+    description:
+      'Using rails built-in association functions, build a has_one relation between User and Home model',
+    completed: false,
+    user_id: jacob.id,
+    assigned_to_id: dev4.id
+  )
+
+project_two =
+  Project.new(
+    title: 'Build UI for new app',
+    description:
+      "Using the latest framework version provided by our vendors, we need to build a user interface for our client's needs",
+    date_start: '2021-04-22'.to_date,
+    date_end: '2021-05-06'.to_date,
+    est_duration: '2 weeks',
+    time_spent: '',
+    completed: false
+  )
+
+project_two.tasks << task_for_project_two
+project_two.tasks << task_two_for_project_two
+project_two.save
+
+pm_1 = ProjectManager.create(user_id: jacob.id, project_id: project_one.id)
+# ************************ #
+# ***** PROJECT TWO ****** #
+# ************************ #
 
 # New first then shovel to Project.tickets
-ticket_one = Ticket.new(title: "Can't push application.yml keys to heroku", description: "I'm trying to push my application.yml keys to heroku with the command figaro heroku:set -e production but I'm getting the following error... Please specify a version along with Heroku's API MIME type. For example, 'Accept: application/vnd.heroku+json; version=3'. I'm on Ubuntu 16.04, I've tried to reinstall heroku as a standalone and through npm, still getting the same error. HELP", resolved: false, created_by_id: dev.id)
+ticket_one =
+  Ticket.new(
+    title: "Can't push application.yml keys to heroku",
+    description:
+      "I'm trying to push my application.yml keys to heroku with the command figaro heroku:set -e production but I'm getting the following error... Please specify a version along with Heroku's API MIME type. For example, 'Accept: application/vnd.heroku+json; version=3'. I'm on Ubuntu 16.04, I've tried to reinstall heroku as a standalone and through npm, still getting the same error. HELP",
+    resolved: false,
+    created_by_id: dev.id
+  )
 
 project_one.tickets << ticket_one
 ticket_one.save

@@ -5,6 +5,7 @@ class User < ApplicationRecord
   validates_uniqueness_of :email, :username
 
   has_many :tasks
+
   has_many :projects, through: :tasks
-  has_one :project_manager
+  has_many :project_managers
 end
