@@ -8,6 +8,8 @@ class TasksController < ApplicationController
     if @current_user.role === 'Project Manager'
       projects = []
       @current_user.project_managers.select { |pm| projects << pm.project }
+    else
+      projects = @current_user.projects
     end
     project = projects.sort { |a, b| a.date_start < b.date_start ? 0 : 1 }.first
     if !project
@@ -48,7 +50,7 @@ class TasksController < ApplicationController
 
   def dev_update_status
     task = Task.find(params[:id])
-
-    task.update(completed: params['task']['completed']) if task
+    task.update(completed: !task.completed) if task
+    render json: {status: 200}
   end
 end

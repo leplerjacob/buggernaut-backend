@@ -27,6 +27,7 @@ Rails
     resources :tasks, only: [:create, :index, :show, :update]
     put '/tasks/update_status/:id', to: 'tasks#dev_update_status'
     get '/tasks_by_project', to: 'tasks#tasks_for_project'
+    put '/task_update_status/:id', to: 'tasks#dev_update_status'
     #************** TASK **************#
     
     #************** TICKET **************#

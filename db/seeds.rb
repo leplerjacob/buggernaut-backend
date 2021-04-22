@@ -56,7 +56,7 @@ dev2 =
 dev3 =
   User.create!(
     first_name: 'Bob',
-    last_name: 'Burnquist',
+    last_name: 'Burn',
     username: 'bob',
     email: 'bburn@email.com',
     phone_number: '111-916-9999',
