@@ -105,7 +105,7 @@ project_one =
     title: 'Build User Authentication',
     description:
       'To build user registration, login functionality along with authentication and validations',
-    date_start: Date.today,
+    date_start: '2021-04-10'.to_date,
     date_end: '2021-04-15'.to_date,
     est_duration: '5 days',
     time_spent: '',
@@ -116,7 +116,7 @@ project_one.tasks << task_for_project_one
 project_one.tasks << task_two_for_project_one
 project_one.save
 
-pm_2 = ProjectManager.create(user_id: jacob.id, project_id: project_one.id)
+pm_1 = ProjectManager.create(user_id: jacob.id, project_id: project_one.id)
 # ************************ #
 # ***** PROJECT ONE ****** #
 # ************************ #
@@ -159,7 +159,7 @@ project_two.tasks << task_for_project_two
 project_two.tasks << task_two_for_project_two
 project_two.save
 
-pm_1 = ProjectManager.create(user_id: jacob.id, project_id: project_one.id)
+pm_2 = ProjectManager.create(user_id: jacob.id, project_id: project_two.id)
 # ************************ #
 # ***** PROJECT TWO ****** #
 # ************************ #

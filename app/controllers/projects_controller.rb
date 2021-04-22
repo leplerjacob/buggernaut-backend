@@ -6,6 +6,19 @@ class ProjectsController < ApplicationController
     render json: projects
   end
 
+  def open_projects_tasks_and_tickets
+    if @current_user.role === "Project Manager"
+      projects =
+        @current_user.project_managers.collect do |pm|
+          pm.project if !pm.project.completed
+        end
+      render json: projects, include: %i[tasks tickets] if projects.count > 0
+    else 
+      projects = @current_user.projects
+      render json: projects, include: %i[tasks tickets] if projects.count > 0
+    end
+  end
+
   def create
     project =
       Project.new(
@@ -31,7 +44,7 @@ class ProjectsController < ApplicationController
     end
 
     project.save
-    render json: {project: project, status: 200} if project.valid?
+    render json: { project: project, status: 200 } if project.valid?
   end
 
   def show

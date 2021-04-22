@@ -5,13 +5,17 @@ class TasksController < ApplicationController
 
   def tasks_for_project
     # Get latest project user is involved in
-    project = @current_user.projects.order(:date_start).first
+    if @current_user.role === 'Project Manager'
+      projects = []
+      @current_user.project_managers.select { |pm| projects << pm.project }
+    end
+    project = projects.sort { |a, b| a.date_start < b.date_start ? 0 : 1 }.first
     if !project
       task = Task.where(assigned_to: @current_user.id).last
       project = task.project
     end
     tasks = project.tasks
-    render json: { tasks: tasks, status: 200 } if tasks
+    render json: { project: project, tasks: tasks, status: 200 } if tasks
   end
 
   def create
