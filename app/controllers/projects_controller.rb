@@ -53,9 +53,18 @@ class ProjectsController < ApplicationController
   end
 
   def users_projects
-    users = User.where.not(id: @current_user.id)
-    projects = @current_user.projects.uniq
-    render json: { status: 200, projects: projects, users: users } if projects
+    if (@current_user.role === 'Project Manager')
+      projects = []
+      @current_user.project_managers.each {|pm|
+        projects << pm.project
+      }
+      users = User.where.not(id: @current_user.id)
+      render json: { status: 200, projects: projects, users: users } if projects
+    else
+      users = User.where.not(id: @current_user.id)
+      projects = @current_user.projects.uniq
+      render json: { status: 200, projects: projects, users: users } if projects
+    end
   end
 
   def current_tasks_and_tickets
