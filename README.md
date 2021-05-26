@@ -9,7 +9,7 @@ Frontend - React
 
 Installation
 
-Fork and clone to local repository. Follow up forking and cloning the frontend as well. Run 'bundle install' then 'rails s'. On the frontend root directory, run npm start.
+Fork and clone to local repository. Follow up forking and cloning the frontend as well (here --> https://github.com/leplerjacob/buggernaut-frontend). Run 'bundle install' then 'rails s'. On the frontend root directory, run npm start.
 
 License MIT License
 
